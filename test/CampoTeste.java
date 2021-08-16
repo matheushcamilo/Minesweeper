@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+
 //Inicializando o campo de teste localizado no centro
 public class CampoTeste {
     private Campo campo;
