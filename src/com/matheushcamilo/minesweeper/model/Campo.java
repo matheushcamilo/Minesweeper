@@ -16,7 +16,12 @@ public class Campo {
         this.linha = linha;
         this.coluna = coluna;
     }
-     public boolean adicionarVizinho(Campo vizinho){
+
+    public boolean isMarcado() {
+        return marcado;
+    }
+
+    public boolean adicionarVizinho(Campo vizinho){
         //Descobrindo se o candidato a vizinho está na diagonal
         boolean linhaDiferente = vizinho.linha != linha;
         boolean colunaDiferente = vizinho.coluna != coluna;
@@ -42,22 +47,23 @@ public class Campo {
         }
     }
 
-    void alternarMarcacao(){
+    public void alternarMarcacao(){
         if(!aberto){
             marcado = ! marcado;
         }
     }
-    boolean abrir(){
+    public boolean abrir(){
         if(!aberto && !marcado){
             aberto = true;
             if(minado){
                 throw new ExplosionException();
             }
             if (vizinhancaSegura()){
-                vizinhos.forEach(vizinho -> vizinho.abrir());
+                vizinhos.forEach(Campo::abrir);
             }
             return true;
         }
+        //Caso o campo esteja marcado, não poderá ser aberto
         else{
             return false;
         }
@@ -65,5 +71,13 @@ public class Campo {
 
     boolean vizinhancaSegura(){
         return vizinhos.stream().noneMatch(vizinho -> vizinho.minado);
+    }
+
+    public void minar(){
+       minado = true;
+    }
+
+    public boolean isAberto() {
+        return aberto;
     }
 }
