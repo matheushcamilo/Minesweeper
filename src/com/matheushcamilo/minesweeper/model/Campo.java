@@ -17,6 +17,14 @@ public class Campo {
         this.coluna = coluna;
     }
 
+    void setAberto(boolean aberto) {
+        this.aberto = aberto;
+    }
+
+    public boolean isMinado() {
+        return minado;
+    }
+
     public boolean isMarcado() {
         return marcado;
     }
@@ -32,7 +40,6 @@ public class Campo {
     public int getColuna() {
         return coluna;
     }
-
     public boolean adicionarVizinho(Campo vizinho){
         //Descobrindo se o candidato a vizinho está na diagonal
         boolean linhaDiferente = vizinho.linha != linha;
@@ -58,6 +65,7 @@ public class Campo {
             return false;
         }
     }
+
     public void alternarMarcacao(){
         if(!aberto){
             marcado = ! marcado;
@@ -112,11 +120,11 @@ public class Campo {
         else if(marcado){
             return "X";
         }
+        else if(aberto && (minasNaVizinhanca() > 0)){
+            return Long.toString(minasNaVizinhanca());
+        }
         else if(aberto){
             return " ";
-        }
-        else if(aberto && minasNaVizinhanca() > 0){
-            return Long.toString(minasNaVizinhanca());
         }
         else{
             return "?";
