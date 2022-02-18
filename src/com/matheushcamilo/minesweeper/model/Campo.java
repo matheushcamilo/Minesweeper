@@ -76,7 +76,7 @@ public class Campo {
         if(!aberto && !marcado){
             aberto = true;
             if(minado){
-                throw new ExplosionException();
+                //TODO Implementar nova versão
             }
             if (vizinhancaSegura()){
                 vizinhos.forEach(Campo::abrir);

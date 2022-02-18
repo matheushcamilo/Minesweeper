@@ -54,7 +54,7 @@ public class Tabuleiro {
                     .findFirst()
                     .ifPresent(c -> c.abrir());
 
-        }catch(ExplosionException e){
+        }catch(Exception e){ //FIXME Modificar método
             CAMPOS.forEach(c -> c.setAberto(true));
             throw e;
         }
@@ -74,30 +74,6 @@ public class Tabuleiro {
         CAMPOS.stream().forEach(c -> c.reiniciar());
         sortearMinas();
         }
-
-    public String toString(){
-        StringBuilder sb = new StringBuilder();
-        int i = 0;
-        sb.append("  ");
-        for (int c = 0; c < colunas; c++) {
-            sb.append(" ");
-            sb.append(c);
-            sb.append(" ");
-        }
-        sb.append("\n");
-        for (int l = 0; l < linhas; l++) {
-            sb.append(l);
-            sb.append(" ");
-            for (int c = 0; c < colunas; c++) {
-                sb.append(" ");
-                sb.append(CAMPOS.get(i));
-                sb.append(" ");
-                i++;
-            }
-            sb.append("\n");
-        }
-        return sb.toString();
-    }
 
 }
 
