@@ -1,5 +1,4 @@
 import com.matheushcamilo.minesweeper.model.Campo;
-import com.matheushcamilo.minesweeper.model.ExplosionException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -86,13 +85,6 @@ public class CampoTeste {
 
     }
 
-    @Test
-    void testeAbrirMinadoNaoMarcado(){
-        campo.minar();
-        assertThrows(ExplosionException.class, () ->{
-            campo.abrir();
-        });
-    }
     //Campos iniciam não minados e vizinho abre vizinho até que a vizinhança não esteja mais segura
     //Por abrir campo, pela recursividade, campo11 e campo22 precisam estar abertos também
     @Test
